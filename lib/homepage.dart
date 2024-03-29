@@ -1,30 +1,25 @@
+
 import 'package:banao/Lessons.dart';
 import 'package:banao/Rectangle.dart';
 import 'package:banao/event.dart';
 import 'package:banao/program.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class homepage extends StatefulWidget {
-  const homepage({Key? key}) : super(key: key);
+  const homepage({super.key});
 
   @override
   State<homepage> createState() => _homepageState();
 }
 
-final controller = OnboardingItems();
-final controllers = Events();
-final controllerss = you();
-final pageController = PageController();
-
-//late final bool isActive;
-
 class _homepageState extends State<homepage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
+       appBar: AppBar(
         leading: const Icon(Icons.menu),
         actions: const [
           Icon(Icons.message),
@@ -37,7 +32,6 @@ class _homepageState extends State<homepage> {
       ),
       body: SingleChildScrollView(
         child: Column(
-          // mainAxisAlignment: MainAxisAlignment.start,
           children: [
             Container(
               width: double.infinity,
@@ -110,436 +104,28 @@ class _homepageState extends State<homepage> {
                 ),
               ),
             ),
-            Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceAround,
-                children: [
-                  Text(
-                    "Programs for you",
-                    overflow: TextOverflow.ellipsis,
-                    style: GoogleFonts.lora(
-                      fontSize: 18,
-                      color: const Color.fromARGB(255, 0, 0, 0),
-                      fontWeight: FontWeight.w500,
-                    ),
-                  ),
-                  TextButton(
-                    onPressed: () {
-                      // Add your button onPressed logic here
-                      print('Button pressed');
-                    },
-                    child: const Row(
-                      mainAxisSize: MainAxisSize.min,
-                      children: [
-                        Text(
-                          'Veiw all',
-                          style: TextStyle(color: Color.fromARGB(255, 0, 0, 0)),
-                        ),
-                        SizedBox(width: 8), // Add space between text and icon
-                        Icon(Icons.arrow_forward,
-                            color: Color.fromARGB(255, 0, 0, 0)),
-                      ],
-                    ),
-                  ),
-                ],
-              ),
+            const Row(
+              children: [
+                Expanded(child: Programs())
+                // /(child: Programs()),
+              ],
             ),
-            Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: SingleChildScrollView(
-                scrollDirection: Axis.horizontal,
-                child: Row(
-                  children: [
-                    SizedBox(
-                      width: MediaQuery.of(context)
-                          .size
-                          .width, // Adjust the width as needed
-                      child: GridView.builder(
-                        shrinkWrap: true,
-                        gridDelegate:
-                            const SliverGridDelegateWithFixedCrossAxisCount(
-                          crossAxisCount: 2,
-                          crossAxisSpacing: 12.0,
-                          mainAxisSpacing: 12.0,
-                          mainAxisExtent: 360,
-                        ),
-                        itemCount: controller.items.length,
-                        itemBuilder: (context, index) {
-                          return Container(
-                            //height: 200,
-                            width:
-                                200, // Adjust the width as per your requirement
-                            decoration: BoxDecoration(
-                              border: Border.all(
-                                  width: 1,
-                                  color:
-                                      const Color.fromRGBO(235, 237, 240, 1)),
-                              borderRadius: BorderRadius.circular(16.0),
-                              color: const Color.fromARGB(255, 255, 255, 255),
-                            ),
-                            child: Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                ClipRRect(
-                                  borderRadius: const BorderRadius.only(
-                                    topLeft: Radius.circular(16),
-                                    topRight: Radius.circular(16),
-                                  ),
-                                  child: Image.asset(
-                                    controller.items[index].image,
-                                    width: double.infinity,
-                                    height: 200,
-                                    fit: BoxFit.fill,
-                                  ),
-                                ),
-                                const SizedBox(height: 10),
-                                Padding(
-                                  padding: const EdgeInsets.symmetric(
-                                      horizontal: 8.0),
-                                  child: Column(
-                                    crossAxisAlignment:
-                                        CrossAxisAlignment.start,
-                                    children: [
-                                      Text(
-                                        controller.items[index].title,
-                                        style: const TextStyle(
-                                          fontSize: 12,
-                                          color:
-                                              Color.fromRGBO(89, 139, 237, 1),
-                                          fontWeight: FontWeight.bold,
-                                        ),
-                                      ),
-                                      const SizedBox(height: 6),
-                                      Text(
-                                        controller.items[index].description,
-                                        style: const TextStyle(
-                                          color: Color.fromARGB(255, 0, 0, 0),
-                                          fontSize: 16,
-                                          fontWeight: FontWeight.w700,
-                                        ),
-                                      ),
-                                      const SizedBox(height: 6),
-                                      Text(
-                                        controller.items[index].text,
-                                        style: const TextStyle(
-                                          color: Color.fromARGB(255, 0, 0, 0),
-                                          fontSize: 12,
-                                          fontWeight: FontWeight.w500,
-                                        ),
-                                      ),
-                                    ],
-                                  ),
-                                ),
-                              ],
-                            ),
-                          );
-                        },
-                      ),
-                    ),
-                  ],
-                ),
-              ),
+            const Row(
+              children: [
+                Expanded(child: events())
+                // /(child: Programs()),
+              ],
             ),
-            Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceAround,
-                children: [
-                  Text(
-                    "Events and experiences",
-                    overflow: TextOverflow.ellipsis,
-                    style: GoogleFonts.lora(
-                      fontSize: 18,
-                      color: const Color.fromARGB(255, 0, 0, 0),
-                      fontWeight: FontWeight.w500,
-                    ),
-                  ),
-                  TextButton(
-                    onPressed: () {
-                      // Add your button onPressed logic here
-                      print('Button pressed');
-                    },
-                    child: const Row(
-                      mainAxisSize: MainAxisSize.min,
-                      children: [
-                        Text(
-                          'Veiw all',
-                          style: TextStyle(color: Color.fromARGB(255, 0, 0, 0)),
-                        ),
-                        SizedBox(width: 8), // Add space between text and icon
-                        Icon(Icons.arrow_forward,
-                            color: Color.fromARGB(255, 0, 0, 0)),
-                      ],
-                    ),
-                  ),
-                ],
-              ),
-            ),
-            Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: SingleChildScrollView(
-                scrollDirection: Axis.horizontal,
-                child: Row(
-                  children: [
-                    SizedBox(
-                      width: MediaQuery.of(context)
-                          .size
-                          .width, // Adjust the width as needed
-                      child: GridView.builder(
-                        shrinkWrap: true,
-                        gridDelegate:
-                            const SliverGridDelegateWithFixedCrossAxisCount(
-                          crossAxisCount: 2,
-                          crossAxisSpacing: 12.0,
-                          mainAxisSpacing: 12.0,
-                          mainAxisExtent: 360,
-                        ),
-                        itemCount: controllers.item.length,
-                        itemBuilder: (context, index) {
-                          return Container(
-                            //height: 200,
-                            width:
-                                200, // Adjust the width as per your requirement
-                            decoration: BoxDecoration(
-                              border: Border.all(
-                                  width: 1,
-                                  color:
-                                      const Color.fromRGBO(235, 237, 240, 1)),
-                              borderRadius: BorderRadius.circular(16.0),
-                              color: const Color.fromARGB(255, 255, 255, 255),
-                            ),
-                            child: Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                ClipRRect(
-                                  borderRadius: const BorderRadius.only(
-                                    topLeft: Radius.circular(16),
-                                    topRight: Radius.circular(16),
-                                  ),
-                                  child: Image.asset(
-                                    controllers.item[index].image,
-                                    width: double.infinity,
-                                    height: 200,
-                                    fit: BoxFit.fill,
-                                  ),
-                                ),
-                                const SizedBox(height: 10),
-                                Padding(
-                                  padding: const EdgeInsets.symmetric(
-                                      horizontal: 8.0),
-                                  child: Column(
-                                    crossAxisAlignment:
-                                        CrossAxisAlignment.start,
-                                    children: [
-                                      Text(
-                                        controllers.item[index].title,
-                                        style: const TextStyle(
-                                          fontSize: 12,
-                                          color:
-                                              Color.fromRGBO(89, 139, 237, 1),
-                                          fontWeight: FontWeight.bold,
-                                        ),
-                                      ),
-                                      const SizedBox(height: 6),
-                                      Text(
-                                        controllers.item[index].description,
-                                        style: const TextStyle(
-                                          color: Color.fromARGB(255, 0, 0, 0),
-                                          fontSize: 16,
-                                          fontWeight: FontWeight.w700,
-                                        ),
-                                      ),
-                                      const SizedBox(height: 6),
-                                      Row(
-                                        mainAxisAlignment:
-                                            MainAxisAlignment.spaceBetween,
-                                        children: [
-                                          Text(
-                                            controllers.item[index].text,
-                                            style: const TextStyle(
-                                              color:
-                                                  Color.fromARGB(255, 0, 0, 0),
-                                              fontSize: 12,
-                                              fontWeight: FontWeight.w500,
-                                            ),
-                                          ),
-                                          ElevatedButton(
-                                            onPressed: () {},
-                                            style: ElevatedButton.styleFrom(
-                                              backgroundColor: const Color.fromARGB(
-                                                  255, 255, 255, 255),
-                                              //primary:
-                                              // onPrimary: Colors.red,
-                                              side: const BorderSide(
-                                                  color: Color.fromRGBO(
-                                                      89, 139, 237, 1)),
-                                            ),
-                                            child: const Text("Book",
-                                                style: TextStyle(
-                                                    color: Color.fromRGBO(
-                                                        89, 139, 237, 1))),
-                                          )
-                                        ],
-                                      )
-                                    ],
-                                  ),
-                                ),
-                              ],
-                            ),
-                          );
-                        },
-                      ),
-                    ),
-                  ],
-                ),
-              ),
-            ),
-            Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceAround,
-                children: [
-                  Text(
-                    "Lessons for you",
-                    overflow: TextOverflow.ellipsis,
-                    style: GoogleFonts.lora(
-                      fontSize: 18,
-                      color: const Color.fromARGB(255, 0, 0, 0),
-                      fontWeight: FontWeight.w500,
-                    ),
-                  ),
-                  TextButton(
-                    onPressed: () {
-                      // Add your button onPressed logic here
-                      print('Button pressed');
-                    },
-                    child: const Row(
-                      mainAxisSize: MainAxisSize.min,
-                      children: [
-                        Text(
-                          'Veiw all',
-                          style: TextStyle(color: Color.fromARGB(255, 0, 0, 0)),
-                        ),
-                        SizedBox(width: 8), // Add space between text and icon
-                        Icon(Icons.arrow_forward,
-                            color: Color.fromARGB(255, 0, 0, 0)),
-                      ],
-                    ),
-                  ),
-                ],
-              ),
-            ),
-            Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: SingleChildScrollView(
-                scrollDirection: Axis.horizontal,
-                child: Row(
-                  children: [
-                    SizedBox(
-                      width: MediaQuery.of(context)
-                          .size
-                          .width, // Adjust the width as needed
-                      child: GridView.builder(
-                        shrinkWrap: true,
-                        gridDelegate:
-                            const SliverGridDelegateWithFixedCrossAxisCount(
-                          crossAxisCount: 2,
-                          crossAxisSpacing: 12.0,
-                          mainAxisSpacing: 12.0,
-                          mainAxisExtent: 360,
-                        ),
-                        itemCount: controllerss.itemss.length,
-                        itemBuilder: (context, index) {
-                          return Container(
-                            //height: 200,
-                            width:
-                                200, // Adjust the width as per your requirement
-                            decoration: BoxDecoration(
-                              border: Border.all(
-                                  width: 1,
-                                  color:
-                                      const Color.fromRGBO(235, 237, 240, 1)),
-                              borderRadius: BorderRadius.circular(16.0),
-                              color: const Color.fromARGB(255, 255, 255, 255),
-                            ),
-                            child: Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                ClipRRect(
-                                  borderRadius: const BorderRadius.only(
-                                    topLeft: Radius.circular(16),
-                                    topRight: Radius.circular(16),
-                                  ),
-                                  child: Image.asset(
-                                    controllerss.itemss[index].image,
-                                    width: double.infinity,
-                                    height: 200,
-                                    fit: BoxFit.fill,
-                                  ),
-                                ),
-                                const SizedBox(height: 10),
-                                Padding(
-                                  padding: const EdgeInsets.symmetric(
-                                      horizontal: 8.0),
-                                  child: Column(
-                                    crossAxisAlignment:
-                                        CrossAxisAlignment.start,
-                                    children: [
-                                      Text(
-                                        controllers.item[index].title,
-                                        style: const TextStyle(
-                                          fontSize: 12,
-                                          color:
-                                              Color.fromRGBO(89, 139, 237, 1),
-                                          fontWeight: FontWeight.bold,
-                                        ),
-                                      ),
-                                      const SizedBox(height: 6),
-                                      Text(
-                                        controllerss.itemss[index].description,
-                                        style: const TextStyle(
-                                          color: Color.fromARGB(255, 0, 0, 0),
-                                          fontSize: 16,
-                                          fontWeight: FontWeight.w700,
-                                        ),
-                                      ),
-                                      const SizedBox(height: 6),
-                                      Row(
-                                        mainAxisAlignment:
-                                            MainAxisAlignment.spaceBetween,
-                                        children: [
-                                          Text(
-                                            controllerss.itemss[index].text,
-                                            style: const TextStyle(
-                                              color:
-                                                  Color.fromARGB(255, 0, 0, 0),
-                                              fontSize: 12,
-                                              fontWeight: FontWeight.w500,
-                                            ),
-                                          ),
-                                          const Icon(CupertinoIcons.padlock)
-                                        ],
-                                      )
-                                    ],
-                                  ),
-                                ),
-                              ],
-                            ),
-                          );
-                        },
-                      ),
-                    ),
-                  ],
-                ),
-              ),
-            ),
-            const SizedBox(
-              height: 30,
+            const Row(
+              children: [
+                Expanded(child: Lesson())
+                // /(child: Programs()),
+              ],
             ),
           ],
         ),
       ),
+      
       bottomNavigationBar: Stack(
         children: [
           BottomNavigationBar(
@@ -600,6 +186,9 @@ class _homepageState extends State<homepage> {
           ),
         ],
       ),
+  
     );
+    
   }
+  
 }
