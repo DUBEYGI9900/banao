@@ -20,7 +20,7 @@
   List<lessons> itemss = [
     lessons(
       title: "BABYCARE",
-      description: "Understanding of human behaviour",
+      description: "U of human behaviour",
       image: "assets/images/events1.jpg",
       text: "3 min",
      // Example of how to add a button
