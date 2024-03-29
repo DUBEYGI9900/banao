@@ -28,7 +28,7 @@
       description: "Understanding of human behaviour",
       image: "assets/images/events1.jpg",
       text: "13 Feb, Sunday",
-     // Example of how to add a button
+     // Example of how to add a buttongit
     ),
   ];
 
