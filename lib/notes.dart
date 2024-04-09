@@ -201,7 +201,7 @@ class _AddNoteScreenState extends State<AddNoteScreen> {
         ),
       ),
     );
-  }
+  }//////////////firebase not working
 }
 
 class EditNoteScreen extends StatefulWidget {
